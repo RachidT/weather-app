@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Test technique - Front side
 
-## Available Scripts
+## Énoncé
 
-In the project directory, you can run:
+L'objectif de ce test sera de créer une web application météo côté client. Les besoins sont les suivants :
 
-### `yarn start`
+- En tant qu'utilisateur, je souhaite pouvoir visualiser la météo de 15 grandes villes prédéfinies
+- En tant qu'utilisateur, je souhaite pouvoir rechercher et ajouter n'importe quelle grande ville dans le monde afin de connaître sa météo à un instant t
+- En tant qu'utilisateur, je souhaite pouvoir supprimer de la liste une ville qui ne m'intéresse pas
+- En tant qu'utilisateur, je souhaite pouvoir sélectionner une ville et connaître ses prévisions météorologiques pour les 5 prochains jours
+- _Bonus:_ En tant qu'utilisateur, je souhaite pouvoir comparer les prévisions météorologiques pour les 5 prochains jours entre deux villes
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Vous avez carte blanche pour la création de l'UI et de l'UX. Les données seront uniquement traitées en front. Vous êtes libre d'ajouter autant de librairies utilitaires que vous le souhaitez dans votre projet si vous en ressentez le besoin.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Le projet devra être hébergé dans un repository public, sur Github/Gitlab, afin d'être évalué. Cet énoncé devra figurer à la racine du projet.
 
-### `yarn test`
+## Conditions
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Vous devez utiliser [ReactJS](https://reactjs.org/) en tant que librairie de création d'UI
 
-### `yarn build`
+## Restrictions
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Les préprocesseurs CSS tels que SASS, LESS ou Stylus sont interdits.
+2. Les frameworks CSS tels que Bootstrap, Foundation ou PureCSS sont interdits.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Pour la capture de données météorologiques, vous êtes libre du choix de l'API. Cependant, nous recommandons la solution gratuite [OpenWeatherMap](https://openweathermap.org/).
 
-### `yarn eject`
+- Pour la recherche et l'autocompletion de ville, vous êtes libre d'utiliser l'API [Google Maps](https://developers.google.com/places/web-service/autocomplete) ou une alternative libre de droit.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Notation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Vous serez noté sur la qualité, la beauté et la simplicité de votre code. De plus, vous serez noté sur l'UI, l'ergonomie et l'UX de votre solution.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Données
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Voici la liste des villes européennes dont les résultats météorologiques doivent être affichés automatiquement:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Paris
+- Rome
+- Lisbonne
+- Berlin
+- Londres
+- Toulouse
+- Marseille
+- Barcelone
+- Dublin
+- Moscou
+- Varsovie
+- Vienne
+- Helsinki
+- Bruxelles
+- Amsterdam
