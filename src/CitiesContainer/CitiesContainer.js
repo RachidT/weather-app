@@ -1,12 +1,42 @@
 import React from 'react'
-import CitiesWeather from 'CityWeather'
+import useAxios from 'axios-hooks'
+import CitiesWeather from './CitiesWeather/CitiesWeather'
 
+// const CITIES_ID = [
+//   2968815,
+//   4219762,
+//   2267056,
+//   2950157,
+//   6058560,
+//   6453974,
+//   6447142,
+//   6356055,
+//   2964574,
+//   524901,
+//   756135,
+//   2761369,
+//   658225,
+//   2800867,
+//   2759794
+// ]
 const CitiesContainer = () => {
-  return (
-    <div>
-      <CitiesWeather />
-    </div>
+
+  const [{ data: defaultCities, loading, error }, refetch] = useAxios(
+    `http://api.openweathermap.org/data/2.5/group?id=2968815,4219762,2267056,2950157,6058560,6453974,6447142,6356055,2964574,524901,756135,2761369,658225,2800867,2759794&units=metric&APPID=e9924d33e581093d0bc155e4fe87f138`
   );
+  if (loading) return <div>...loading</div>
+  if (error) return console.log(error)
+  console.log('defaultCities=>', defaultCities)
+  return (
+    <div style={{padding: '2rem'}}>
+      {
+        defaultCities.list.map(el =>
+          <CitiesWeather name={el.name} country={el.sys.country} refetch={refetch} key={el.id} weather={el.weather} main={el.main}/>
+        )
+
+      }
+    </div>
+  )
 }
 
 export default CitiesContainer
