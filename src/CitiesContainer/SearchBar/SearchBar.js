@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import useAxios from 'axios-hooks'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
 const SearchBar = ({ inputValue, handleOnChange }) => {
-  // const [inputValue, setInputValue] = useState('')
-
-  // const handleOnChange = city => {
-  //   setInputValue(city);
-  // }
-
+  const [newCity, setNewCity] = useState([])
+  const cityName = inputValue.split(',').shift()
+  const[{ data, loading, error }, fetchNewCity] = useAxios(
+    `api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=e9924d33e581093d0bc155e4fe87f138`,
+    { manual: true }
+  )
+  console.log('data =>', data)
 
   const renderFunc = ({
     getInputProps,
@@ -18,7 +20,7 @@ const SearchBar = ({ inputValue, handleOnChange }) => {
     return (
       <div>
         <input {...getInputProps({ placeholder: "Search Places..." })} />
-        <button>search</button>
+        <button onClick={fetchNewCity}>search</button>
         <div>
           {loading && <div>Loading...</div>}
           {suggestions.map(suggestion => (
