@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import PlacesAutocomplete from 'react-places-autocomplete'
+import React from 'react'
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
-const SearchBar = () => {
-  const [inputValue, setInputValue] = useState('')
+const SearchBar = ({ inputValue, handleOnChange }) => {
+  // const [inputValue, setInputValue] = useState('')
 
-  const handleOnChange = city => {
-    setInputValue(city);
-  }
+  // const handleOnChange = city => {
+  //   setInputValue(city);
+  // }
+
 
   const renderFunc = ({
     getInputProps,
