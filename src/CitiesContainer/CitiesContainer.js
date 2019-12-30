@@ -1,6 +1,7 @@
 import React from 'react'
 import useAxios from 'axios-hooks'
 import CitiesWeather from './CitiesWeather/CitiesWeather'
+import SearchBar from './SearchBar/SearchBar'
 
 // const CITIES_ID = [
 //   2968815,
@@ -28,15 +29,22 @@ const CitiesContainer = () => {
   if (error) return console.log(error)
   console.log('defaultCities=>', defaultCities)
   return (
-    <div style={{padding: '2rem'}}>
-      {
-        defaultCities.list.map(el =>
-          <CitiesWeather name={el.name} country={el.sys.country} refetch={refetch} key={el.id} weather={el.weather} main={el.main}/>
-        )
-
-      }
+    <div style={{ padding: "2rem" }}>
+      <div> <SearchBar /></div>
+      <div>
+        {defaultCities.list.map(el => (
+          <CitiesWeather
+            name={el.name}
+            country={el.sys.country}
+            refetch={refetch}
+            key={el.id}
+            weather={el.weather}
+            main={el.main}
+          />
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
 export default CitiesContainer
