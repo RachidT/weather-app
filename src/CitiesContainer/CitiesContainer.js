@@ -17,11 +17,12 @@ const CitiesContainer = () => {
   );
   if (loading) return <div>...loading</div>
   if (error) return console.log(error)
-  console.log(defaultCities)
+
   return (
     <div className="container">
-      <div>
-        <SearchBar handleOnChange={handleOnChange} inputValue={inputValue} />
+      <div className="header">
+        <h1 className="title">Weather App</h1>
+        <div><SearchBar handleOnChange={handleOnChange} inputValue={inputValue} /> </div>
       </div>
       <div>
         {defaultCities.list.map(el => (  

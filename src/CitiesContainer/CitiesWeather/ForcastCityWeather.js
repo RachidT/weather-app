@@ -1,9 +1,10 @@
 import React from 'react'
 
-import './CitiesWeather.css'
+import styles from './CitiesWeather.css'
 
 const ForcastCityWeather = ({ data, main, weather, date }) => {
   console.log('forcast data', data)
+
   const {temp, feels_like, temp_min, temp_max} = main
   return (
     <div className="forcastWeather">

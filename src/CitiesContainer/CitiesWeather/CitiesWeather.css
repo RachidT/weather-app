@@ -83,3 +83,7 @@
 .closeButton:hover {
   font-weight: 700;
 }
+
+.close {
+  display: none;
+}

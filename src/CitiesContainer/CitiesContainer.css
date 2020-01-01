@@ -2,3 +2,13 @@
   padding: 2rem;
   background-color: #eaebf0;
 }
+
+.header {
+  height: 400px;
+  font-size: 30px;
+}
+
+.title {
+  text-align: center;
+  font-family: comic sans ms, sans-serif;
+}

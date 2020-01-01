@@ -1,19 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useAxios from 'axios-hooks'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import { IoMdSearch } from 'react-icons/io'
+import CitiesWeather from '../CitiesWeather/CitiesWeather'
 
 import './SearchBar.css'
 
 const SearchBar = ({ inputValue, handleOnChange }) => {
-  const [newCity, setNewCity] = useState([])
-  const cityName = inputValue.split(',').shift()
+  const [newCity, setNewCity] = useState({})
+  const cityName = inputValue.split(', ').shift()
 
+  
   const[{ data, loading, error }, fetchNewCity] = useAxios(
-    `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=e9924d33e581093d0bc155e4fe87f138`,
+    `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&APPID=e9924d33e581093d0bc155e4fe87f138`,
     { manual: true }
   )
-
+  useEffect(() => {
+    // console.log('data in useEffect', data)
+    setNewCity(data)
+  }, [data])
+  console.log('newCity=>', newCity)
   const renderFunc = ({
     getInputProps,
     getSuggestionItemProps,
@@ -44,13 +50,26 @@ const SearchBar = ({ inputValue, handleOnChange }) => {
 
   return (
     <div>
-      <PlacesAutocomplete
-        value={inputValue}
-        onChange={handleOnChange}
-        searchOptions={searchOptions}
-      >
-        {renderFunc}
-      </PlacesAutocomplete>
+      <div>
+        <PlacesAutocomplete
+          value={inputValue}
+          onChange={handleOnChange}
+          searchOptions={searchOptions}
+        >
+          {renderFunc}
+        </PlacesAutocomplete>
+      </div>
+      <div className="cityAdded">
+      {
+        data && (
+          <CitiesWeather 
+            city={data?.name}
+            main={data?.main}
+            country={data?.sys?.country}
+          />
+        )
+      }
+      </div>
     </div>
   );
 }
