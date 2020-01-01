@@ -1,0 +1,85 @@
+.citiesWeatherContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.currentWeather {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem;
+  color: black;
+  border-radius: 6px;
+  background-color: white;
+  margin-bottom: 12px;
+  width: 60%;
+  height: 80px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.cities {
+  width: 150px;
+}
+
+.forcastButton {
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:60px;
+  height: 25px;
+  text-transform: capitalize;
+  background-color: #29abe2;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: white;
+  cursor: pointer;
+}
+
+.forcastContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  margin: 0 0 24px 24px;
+  border-radius: 6px;
+  background-color: white;
+  position: relative;
+}
+
+.weatherInfo {
+  position: relative;
+  font-size: 14px;
+  color: #566166;
+  font-weight: 600;
+}
+
+.forcastWeather {
+  padding: 30px 16px 24px 16px;
+}
+
+.forcastDates {
+  font-size: 14px;
+  color: black;
+  font-weight: 600;
+}
+
+.closeButton {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  margin: 4px;
+  border-radius: 50%;
+  color: #818e94;
+  background-color: #f3f4f6;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  font-weight: 700;
+}
