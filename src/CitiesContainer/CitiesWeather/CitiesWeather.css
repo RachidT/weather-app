@@ -12,17 +12,24 @@
   color: black;
   border-radius: 6px;
   background-color: white;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   width: 60%;
   height: 80px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.currentWeather:hover {
+  cursor: pointer;
+  width: 61%;
+  height: 85px;
+  margin-bottom: 15px;
 }
 
 .cities {
   width: 150px;
 }
 
-.forcastButton {
+.forecastButton {
   outline: none;
   display: flex;
   align-items: center;
@@ -38,7 +45,7 @@
   cursor: pointer;
 }
 
-.forcastContainer {
+.forecastContainer {
   display: flex;
   justify-content: space-between;
   width: 75%;
@@ -55,11 +62,11 @@
   font-weight: 600;
 }
 
-.forcastWeather {
+.forecastWeather {
   padding: 30px 16px 24px 16px;
 }
 
-.forcastDates {
+.forecastDates {
   font-size: 14px;
   color: black;
   font-weight: 600;
@@ -78,6 +85,7 @@
   color: #818e94;
   background-color: #f3f4f6;
   cursor: pointer;
+  outline: none;
 }
 
 .closeButton:hover {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import useAxios from 'axios-hooks'
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import PlacesAutocomplete from 'react-places-autocomplete'
 import { IoMdSearch } from 'react-icons/io'
 import CitiesWeather from '../CitiesWeather/CitiesWeather'
 
 import './SearchBar.css'
 
 const SearchBar = ({ inputValue, handleOnChange }) => {
-  const [newCity, setNewCity] = useState({})
+  const [newCity, setNewCity] = useState([])
   const cityName = inputValue.split(', ').shift()
 
   
@@ -16,10 +16,12 @@ const SearchBar = ({ inputValue, handleOnChange }) => {
     { manual: true }
   )
   useEffect(() => {
-    // console.log('data in useEffect', data)
-    setNewCity(data)
+    if (data) {
+      let tab = [data]
+      setNewCity(newCity.concat(tab))
+    }
   }, [data])
-  console.log('newCity=>', newCity)
+
   const renderFunc = ({
     getInputProps,
     getSuggestionItemProps,
@@ -55,19 +57,20 @@ const SearchBar = ({ inputValue, handleOnChange }) => {
           value={inputValue}
           onChange={handleOnChange}
           searchOptions={searchOptions}
+          styles={{ autocompleteContainer: {zIndex: '1000'} }}
         >
           {renderFunc}
         </PlacesAutocomplete>
       </div>
       <div className="cityAdded">
       {
-        data && (
+        data && newCity.map(data => (
           <CitiesWeather 
-            city={data?.name}
-            main={data?.main}
-            country={data?.sys?.country}
+            city={data.name}
+            main={data.main}
+            country={data.sys.country}
           />
-        )
+        ))
       }
       </div>
     </div>

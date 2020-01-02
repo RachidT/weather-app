@@ -33,6 +33,7 @@
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
+  outline: none;
 } 
 
 .dropdownResult {
@@ -52,7 +53,6 @@
   line-height: 25px;
   background: white;
   color: #566166;
-  z-index: 30;
 }
 
 .result:hover {
@@ -62,5 +62,10 @@
 }
 
 .cityAdded {
-  margin-bottom: 12px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.autocompleteZindex {
+  z-index: 1000;
 }
