@@ -3,6 +3,8 @@ import useAxios from "axios-hooks";
 import CitiesWeather from "./CitiesWeather/CitiesWeather";
 import SearchBar from "./SearchBar/SearchBar";
 
+import "./CitiesContainer.css";
+
 const CitiesContainer = () => {
   const [cities, setCities] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -36,7 +38,9 @@ const CitiesContainer = () => {
   return (
     <div className="container">
       <div className="header">
-        <h1 className="title">Weather App</h1>
+        <div className="title">
+          <h1>Weather App</h1>
+        </div>
         <div>
           <SearchBar
             handleOnChange={handleOnChange}

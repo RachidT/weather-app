@@ -9,6 +9,10 @@
 
 .title {
   text-align: center;
-  font-family: comic sans ms, sans-serif;
-  font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+
+h1 {
+  text-align: center;
 }
