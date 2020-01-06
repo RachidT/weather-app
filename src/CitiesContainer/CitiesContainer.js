@@ -1,31 +1,52 @@
-import React, { useState } from 'react'
-import useAxios from 'axios-hooks'
-import CitiesWeather from './CitiesWeather/CitiesWeather'
-import SearchBar from './SearchBar/SearchBar'
-
-import styles from './CitiesContainer.css'
+import React, { useState, useEffect } from "react";
+import useAxios from "axios-hooks";
+import CitiesWeather from "./CitiesWeather/CitiesWeather";
+import SearchBar from "./SearchBar/SearchBar";
 
 const CitiesContainer = () => {
-  const [inputValue, setInputValue] = useState('')
+  const [cities, setCities] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   const handleOnChange = city => {
     setInputValue(city);
-  }
+  };
 
   const [{ data: defaultCities, loading, error }, refetch] = useAxios(
     `http://api.openweathermap.org/data/2.5/group?id=2968815,4219762,2267056,2950157,6058560,6453974,6447142,6356055,2964574,524901,756135,2761369,658225,2800867,2759794&units=metric&APPID=e9924d33e581093d0bc155e4fe87f138`
   );
-  if (loading) return <div>...loading</div>
-  if (error) return console.log(error)
+
+  useEffect(() => {
+    if (defaultCities) {
+      setCities([...defaultCities.list]);
+    }
+  }, [defaultCities]);
+
+  const [, executeFetchNewCity] = useAxios({}, { manual: true });
+
+  const fetchCity = async cityName => {
+    const { data: newCity } = await executeFetchNewCity({
+      url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&APPID=e9924d33e581093d0bc155e4fe87f138`
+    });
+    setCities([newCity, ...cities]);
+  };
+
+  if (loading) return <div>...loading</div>;
+  if (error) return console.log(error);
 
   return (
     <div className="container">
       <div className="header">
         <h1 className="title">Weather App</h1>
-        <div><SearchBar handleOnChange={handleOnChange} inputValue={inputValue} /> </div>
+        <div>
+          <SearchBar
+            handleOnChange={handleOnChange}
+            inputValue={inputValue}
+            fetchCity={fetchCity}
+          />
+        </div>
       </div>
       <div>
-        {defaultCities.list.map(el => (  
+        {cities.map(el => (
           <CitiesWeather
             city={el.name}
             country={el.sys.country}
@@ -39,6 +60,6 @@ const CitiesContainer = () => {
       </div>
     </div>
   );
-}
+};
 
-export default CitiesContainer
+export default CitiesContainer;

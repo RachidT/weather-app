@@ -1,38 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import useAxios from 'axios-hooks'
-import PlacesAutocomplete from 'react-places-autocomplete'
-import { IoMdSearch } from 'react-icons/io'
-import CitiesWeather from '../CitiesWeather/CitiesWeather'
+import React from "react";
+import PlacesAutocomplete from "react-places-autocomplete";
+import { IoMdSearch } from "react-icons/io";
 
-import './SearchBar.css'
+import "./SearchBar.css";
 
-const SearchBar = ({ inputValue, handleOnChange }) => {
-  const [newCity, setNewCity] = useState([])
-  const cityName = inputValue.split(', ').shift()
-
-  
-  const[{ data, loading, error }, fetchNewCity] = useAxios(
-    `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&APPID=e9924d33e581093d0bc155e4fe87f138`,
-    { manual: true }
-  )
-  useEffect(() => {
-    if (data) {
-      let tab = [data]
-      setNewCity(newCity.concat(tab))
-    }
-  }, [data])
+const SearchBar = ({ inputValue, handleOnChange, fetchCity }) => {
+  const cityName = inputValue.split(", ").shift();
 
   const renderFunc = ({
     getInputProps,
     getSuggestionItemProps,
     suggestions,
-    loading,
+    loading
   }) => {
     return (
       <>
         <div className="inputContainer">
-          <input {...getInputProps({ placeholder: "Search Places..." })} className="searchBar"/>
-          <button onClick={fetchNewCity} className="searchButton"><IoMdSearch /></button>
+          <input
+            {...getInputProps({ placeholder: "Search Places..." })}
+            className="searchBar"
+          />
+          <button onClick={() => fetchCity(cityName)} className="searchButton">
+            <IoMdSearch />
+          </button>
         </div>
         {suggestions && (
           <div className="dropdownResult">
@@ -41,14 +31,13 @@ const SearchBar = ({ inputValue, handleOnChange }) => {
               <div {...getSuggestionItemProps(suggestion)} className="result">
                 <span>{suggestion.description}</span>
               </div>
-              ))
-            }
+            ))}
           </div>
         )}
       </>
     );
-  }
-  const searchOptions = {types: ['(cities)']}
+  };
+  const searchOptions = { types: ["(cities)"] };
 
   return (
     <div>
@@ -57,24 +46,13 @@ const SearchBar = ({ inputValue, handleOnChange }) => {
           value={inputValue}
           onChange={handleOnChange}
           searchOptions={searchOptions}
-          styles={{ autocompleteContainer: {zIndex: '1000'} }}
+          styles={{ autocompleteContainer: { zIndex: "1000" } }}
         >
           {renderFunc}
         </PlacesAutocomplete>
       </div>
-      <div className="cityAdded">
-      {
-        data && newCity.map(data => (
-          <CitiesWeather 
-            city={data.name}
-            main={data.main}
-            country={data.sys.country}
-          />
-        ))
-      }
-      </div>
     </div>
   );
-}
+};
 
 export default SearchBar;
